@@ -1,9 +1,8 @@
 #pragma once
-#include "ICurveDrawer.h"
 
 struct Point2D 
 {
-    int x, y;
+    float x, y;
 };
 
 struct ControlPoints 
@@ -13,19 +12,20 @@ struct ControlPoints
 
 struct Configs 
 {
-
+    
 };
 
 class CurveGenerator2D
 {
 public:
+    CurveGenerator2D() = delete;
     CurveGenerator2D(int x, int y) : m_nScaleX(x), m_nScaleY(y) 
     {
         m_configs = Configs{};
     }
-    ~CurveGenerator2D();
+    ~CurveGenerator2D() = default;
     void ChangeScale(int x, int y);
-    Point2D* GetCurve(ControlPoints points);
+    Point2D* GetCurve(ControlPoints points, int num_samples);
     Point2D Plot(ControlPoints points, float t);
 
 private:
